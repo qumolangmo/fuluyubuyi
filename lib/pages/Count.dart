@@ -1,9 +1,6 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import '../routes/request_function.dart';
-import 'package:fuluyubuyi/myWidget/myFLChart.dart';
+import '../myWidget/myFLChart.dart';
 import '../settings.dart';
 
 double getMax(List<List> tmp){

@@ -1,6 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:fuluyubuyi/settings.dart';
+import '../settings.dart';
 
 
 Map<String, dynamic> textKey = {};

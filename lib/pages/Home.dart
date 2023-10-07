@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fuluyubuyi/routes/request_function.dart';
-import 'package:fuluyubuyi/settings.dart';
+import '../routes/request_function.dart';
+import '../settings.dart';
 
-import 'package:fuluyubuyi/myWidget/mySliper.dart';
-import 'package:fuluyubuyi/myWidget/mySwitch.dart';
-import 'package:fuluyubuyi/myWidget/myText.dart';
+import '../myWidget/mySliper.dart';
+import '../myWidget/mySwitch.dart';
+import '../myWidget/myText.dart';
 
 
 class Home extends StatefulWidget {

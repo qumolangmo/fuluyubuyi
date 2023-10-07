@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:fuluyubuyi/myWidget/mySliper.dart';
-import 'package:fuluyubuyi/myWidget/mySwitch.dart';
-import 'package:fuluyubuyi/myWidget/myText.dart';
+import '../myWidget/mySliper.dart';
+import '../myWidget/mySwitch.dart';
+import '../myWidget/myText.dart';
 
-import 'package:fuluyubuyi/pages/Count.dart';
-import 'package:fuluyubuyi/pages/Search.dart';
-import 'package:fuluyubuyi/pages/Home.dart';
-import 'package:fuluyubuyi/routes/request_function.dart';
-import 'package:fuluyubuyi/settings.dart';
+import '../pages/Count.dart';
+import '../pages/Search.dart';
+import '../pages/Home.dart';
+import '../routes/request_function.dart';
+import '../settings.dart';
 
 import "dart:async";
 

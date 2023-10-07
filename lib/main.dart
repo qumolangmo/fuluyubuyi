@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:fuluyubuyi/routes/request_function.dart';
+import 'routes/request_function.dart';
 import '../routes/routes.dart';
 import 'settings.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main()async{
-  //WidgetsBinding widgetsFlutterBinding =  WidgetsFlutterBinding.ensureInitialized();
-  //FlutterNativeSplash.preserve(widgetsBinding: widgetsFlutterBinding);
-  //FlutterNativeSplash.remove();
-  runApp(MyApp());
+  WidgetsBinding widgetsFlutterBinding =  WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsFlutterBinding);
   //在启动的瞬间就开始请求数据
   await Future.delayed(Duration.zero,()async{
       initData();
       parametersStatus = await getStatusById("100000000001");
     }  
   );
+  FlutterNativeSplash.remove();
+  runApp(MyApp());
+  
 }
 
 class MyApp extends StatefulWidget {
