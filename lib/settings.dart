@@ -73,7 +73,7 @@ Future<bool> sendControllstate(String index,String state)async{
           mainKey: parametersStatus?[mainKey],
           index: state,
         };
-    var result = await updateStatusById(int.parse(parametersStatus?[mainKey]), json);
+    var result = await updateStatusById(json);
     return result;
   }  
 
@@ -91,13 +91,13 @@ void initData() async{
 
   //将parametersStatus初始化
   for(int i=0;i<parameters.length;i++){
-    //尝试将参数名中带有 "Switch" 或 "Slider" 字符串的送入控制数组中，
+    //尝试将参数名中带有 "switch" 或 "slider" 字符串的送入控制数组中，
     //但一般需要后端返回值的命名规范,
     //建议自行在这两个list中添加字段而不是通过我提供的这种方法
-    if(parameters[i].contains("Switch")){
+    if(parameters[i].contains("switch")){
       controlSwitchText.add(parameters[i]);
     }
-    if(parameters[i].contains("Slider")){
+    if(parameters[i].contains("slider")){
       controlSliderText.add(parameters[i]);
     }
 

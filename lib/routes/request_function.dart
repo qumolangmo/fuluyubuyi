@@ -2,12 +2,14 @@ import 'package:dio/dio.dart';
 
 
 var q = Dio(BaseOptions(
-  baseUrl: 'http://192.168.95.67:8032/',
+  baseUrl: 'http://192.168.124.111:8080/',
   connectTimeout: 5000,
   receiveTimeout: 100000,
   contentType: Headers.jsonContentType,
   responseType: ResponseType.json,
 ));
+
+
 
 //需要后端提供一个接口，用来获取全部的字段名称,数据类型是list
 Future<List> getParameters()async{
@@ -33,33 +35,33 @@ Future<Map> getStatusById(String id) async {
 //根据主键id和时间查询大于time时间的所有记录
 Future<List> getStatusHistoryByDate(String time,String id) async {
   List result = [];
-  Response response = await q.get("/machineHistory/list/time/?sensor_id=$id&time=$time");
-  result = response.data["time"] as List;
+  Response response = await q.get("/machineHistory/findByTime?sensor_id=$id&startTime=$time");
+  result = response.data["records"] as List;
   return result;
 }
 
 //根据主键id和 时间区间 查询在这个区间内的全部记录
 Future<List> getStatusHistoryByInterval(String time1,String time2,String id)async{
   List result = [];
-  Response response = await q.get("/machineHistory/findField/field?sensor_id=$id&startTime=$time1&endTime=$time2");
-  result = response.data["field"] as List;
+  Response response = await q.get("/machineHistory/findByTimeInterval?sensor_id=$id&startTime=$time1&endTime=$time2");
+  result = response.data["records"] as List;
   return result;
 }
 
 //根据主键id和数量num查询最近的num条数据
 Future<List> getStatusHistoryByNum(int num,String id) async{
   List result = [];
-  Response response = await q.get("/machineHistory/list/nums?sensor_id=$id&num=$num");
-  if(response.data==null||response.data["page"]==null){
+  Response response = await q.get("/machineHistory/findByNums?sensor_id=$id&num=$num");
+  if(response.data==null||response.data["records"]==null){
     return [];
   }
-  result = response.data["page"] as List;
+  result = response.data["records"] as List;
   return result;
 }
 
 
 //通过主键id往后端提交一个控制信息的修改
-Future<bool> updateStatusById(int id, Map<String, dynamic> json) async {
+Future<bool> updateStatusById(Map<String, dynamic> json) async {
   Response response = await q.post("/machine/update/", data: json);
   if (response.data["code"] == 200) {
     return true;
