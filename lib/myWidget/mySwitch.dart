@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import '../settings.dart';
 
 
-Map<String,dynamic> switchKey={};
+Map<String,GlobalKey<_MySwitchState>> switchKey={};
 Map<String,dynamic> switchValue={};   //每个按钮组件需要绑定一个外部value来作为按钮数值
 
 void initGlobalSwitchKey(){           //根据你的控制参数中按钮属性的个数来生成全局Key
   for(int i=0;i<controlSwitchText.length;i++){
     GlobalKey<_MySwitchState> tmp = GlobalKey();
     switchKey[controlSwitchText[i]]=tmp;    //生成的key放入switchKey这个Map中
-    switchValue[controlSwitchText[i]]=false;    //默认所有的按钮组件的初始值为0
+    switchValue[controlSwitchText[i]]=(parametersStatus?[controlSwitchText[i]]).compareTo("0")==0?false:true;    //根据获取到的数据更新值
   }
+  
 }
 
 class MySwitch extends StatefulWidget {
@@ -24,7 +25,8 @@ class MySwitch extends StatefulWidget {
 
 class _MySwitchState extends State<MySwitch> {
   void change(){
-    setState(() {});
+    setState(() {
+    });
   }
   @override
   Widget build(BuildContext context) {

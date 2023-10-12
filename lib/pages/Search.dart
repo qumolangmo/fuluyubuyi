@@ -133,7 +133,8 @@ class _SearchState extends State<Search> {
                       Radio(
                           value: 0,
                           groupValue: groupValue,
-                          onChanged: selectByNum),
+                          onChanged: selectByNum
+                      ),
                       const Text("按条查询最近的记录"),
                       const SizedBox(
                         width: 10,

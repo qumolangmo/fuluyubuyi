@@ -2,14 +2,14 @@ import 'package:fuluyubuyi/settings.dart';
 import 'package:flutter/material.dart';
 
 
-Map<String,dynamic> sliderKey={};
+Map<String,GlobalKey<_MySliderState>> sliderKey={};
 Map<String,dynamic> sliderValue={};       //每个滑块组件需要绑定一个外部value来作为滑块数值
 
 void initGlobalSliderKey(){           //根据你的控制参数中滑块属性的个数来生成全局Key
   for(int i=0;i<controlSliderText.length;i++){
     GlobalKey<_MySliderState> tmp = GlobalKey();
     sliderKey[controlSliderText[i]]=tmp;      //生成的key放入sliderKey这个Map中
-    sliderValue[controlSliderText[i]]=0;      //默认所有的滑块组件的初始值为0
+    sliderValue[controlSliderText[i]]=double.parse(parametersStatus?[controlSliderText[i]]);      //根据获取到的值更新值
   }
 }
 
@@ -35,7 +35,6 @@ class _MySliderState extends State<MySlider> {
   }
   @override
   Widget build(BuildContext context) {
-      
       return Slider(
         value: sliderValue[widget.index].toDouble(),
         onChanged: (data) {

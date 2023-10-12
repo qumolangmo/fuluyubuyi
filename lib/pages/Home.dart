@@ -21,20 +21,17 @@ class _HomeState extends State<Home> {
     setState(() {
       parametersStatus = result;
       for(int i=0;i<textKey.length;i++){
-        textKey[parameters[i]].currentState?.change();
+        textKey[parameters[i]]!.currentState?.change();
       }
       for(int i=0;i<switchKey.length;i++){
-        switchKey[controlSwitchText[i]].currentState?.change();
+        switchKey[controlSwitchText[i]]!.currentState?.change();
       }
       for(int i=0;i<sliderKey.length;i++){
-        sliderKey[controlSliderText[i]].currentState?.change();
+        sliderKey[controlSliderText[i]]!.currentState?.change();
       }
     });
   }
-/////////////////////////////////////////控制单片机的update这里写////////////////////////////////////////////////////////////
 
-  
-////////////////////////////////////////控制单片机的update请求上面写////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Center(

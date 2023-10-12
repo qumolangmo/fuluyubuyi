@@ -39,14 +39,14 @@ class _HomePageState extends State<HomePage> {
           parametersStatus = result;
           //////////////////////根据要刷新状态的widget的ID值来更改其状态//////////////////////////
           for(int i=0;i<textKey.length;i++){
-            textKey[parameters[i]].currentState?.change();
+            textKey[parameters[i]]!.currentState?.change();
           }
           
           for(int i=0;i<switchKey.length;i++){
-            switchKey[controlSwitchText[i]].currentState?.change();
+            switchKey[controlSwitchText[i]]!.currentState?.change();
           }
           for(int i=0;i<sliderKey.length;i++){
-            sliderKey[controlSliderText[i]].currentState?.change();
+            sliderKey[controlSliderText[i]]!.currentState?.change();
           }
         });
       }
@@ -59,31 +59,6 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("智能外骨骼监控"),
-        // actions: [
-        //   ////////////////////////文本输入框///////////////////////   
-        //     Align(alignment: Alignment.center,
-        //       child: SizedBox(
-        //       width: 160,
-        //       child: TextField(
-        //         maxLines: 1,
-        //         onSubmitted: (value) {
-        //           parametersStatus?[mainKey] = value;
-        //           setState(() {
-        //             textKey[mainKey].currentState?.change();
-        //           });
-        //         },
-        //         decoration: const InputDecoration(
-        //           isCollapsed: true,        //允许设置行高
-        //           contentPadding: EdgeInsets.only(top: 8,bottom: 8,left: 8),
-        //           filled: true,              //允许填充背景颜色
-        //           fillColor: Color.fromARGB(255, 248, 248, 248),
-        //           border: OutlineInputBorder(),
-        //           hintText: '  请输入ID',
-        //         ),
-        //       ),
-        //     ),),
-        //     const SizedBox(width: 30,),
-        // ],
       ),
       body: list[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

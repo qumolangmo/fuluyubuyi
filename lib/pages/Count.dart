@@ -136,15 +136,15 @@ class _CountState extends State<Count> {
     setState(() {
       //每refresh一次就调整chartWidget长度，以便listView能检测到改动后调用build方法
       if (flaggggg == 1) {
-        chartWidget.add(SizedBox(
+        chartWidget.add(const SizedBox(
           height: 1,
         ));
         flaggggg = 0;
       } else {
-        chartWidget.add(SizedBox(
+        chartWidget.add(const SizedBox(
           height: 1,
         ));
-        chartWidget.add(SizedBox(
+        chartWidget.add(const SizedBox(
           height: 1,
         ));
         flaggggg = 1;

@@ -14,7 +14,6 @@ var q = Dio(BaseOptions(
 //需要后端提供一个接口，用来获取全部的字段名称,数据类型是list
 Future<List> getParameters()async{
   Response response = await q.get("/machine/initData/getParameters");
-  response.data["parameters"];
   if(response.data["parameters"]==null){
     throw "没有从服务器获取到初始化参数，无法继续"; 
   }
@@ -62,7 +61,7 @@ Future<List> getStatusHistoryByNum(int num,String id) async{
 
 //通过主键id往后端提交一个控制信息的修改
 Future<bool> updateStatusById(Map<String, dynamic> json) async {
-  Response response = await q.post("/machine/update/", data: json);
+  Response response = await q.post("/machine/update", data: json);
   if (response.data["code"] == 200) {
     return true;
   }

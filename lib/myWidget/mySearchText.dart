@@ -8,10 +8,8 @@ class MySearchText extends StatefulWidget {
 }
 
 class _MySearchTextState extends State<MySearchText> {
-
   void change(){
     setState(() {
-      
     });
   }
   @override

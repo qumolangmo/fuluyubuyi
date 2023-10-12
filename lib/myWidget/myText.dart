@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../settings.dart';
 
 
-Map<String, dynamic> textKey = {};
+Map<String, GlobalKey<_MyTextState>> textKey = {};
 
 void initGlobalTextKey(){
   for(int i=0; i<parameters.length; i++){
@@ -23,10 +23,9 @@ class MyText extends StatefulWidget {
 }
 
 class _MyTextState extends State<MyText> {
-  int change(){
+  void change(){
     setState(() {
     });
-    return 88;
   }
   //第一次构建时使用map中的数据
   @override

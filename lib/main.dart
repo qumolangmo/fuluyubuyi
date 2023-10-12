@@ -9,12 +9,12 @@ void main()async{
   FlutterNativeSplash.preserve(widgetsBinding: widgetsFlutterBinding);
   //在启动的瞬间就开始请求数据
   await Future.delayed(Duration.zero,()async{
-      initData();
-      parametersStatus = await getStatusById("100000000001");
-    }  
+      parametersStatus = await getStatusById("100001");
+      await initData();
+    }
   );
   FlutterNativeSplash.remove();
-  runApp(MyApp());
+  runApp(const MyApp());
   
 }
 

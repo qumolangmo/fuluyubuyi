@@ -30,7 +30,6 @@ class _MyFLChartState extends State<MyFLChart> {
 
   void change(){
     setState(() {
-      
     });
   }
 
