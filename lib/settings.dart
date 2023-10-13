@@ -5,8 +5,11 @@ import 'myWidget/mySwitch.dart';
 import 'myWidget/mySliper.dart';
 import 'routes/request_function.dart';
 
-//服务器获取的所有字段的名称  -->list
-List<dynamic> parameters=[];
+//在初始化时使用此ID
+String startRequestID = "100001";
+
+//主键的字段名
+String mainKey="sensor_id";
 
 //viewText是parameter在界面上的显示名称，需要与parameters的顺序一一对应，如果没有初始化就会默认显示parameters里的名字
 List<String> viewText=[
@@ -23,19 +26,22 @@ List<String> viewText=[
   "更新时间"
 ];
 
+/////////////////////////////////////////////////////////////////////////需要绘图的参数名称/////////////////////////////////////////////////////////
+List willTraverseParameter = [
+
+];
+////////////////////////////////////////////////////////////////////////绘图参数的中文/////////////////////////////////////////////////////////////////
+List textHHH = [
+
+];
+
 Map ?parametersStatus={};
 
-//是主键的索引，不是主键的值
-String mainKey="";
+//服务器获取的所有字段的名称  -->list
+List<dynamic> parameters=[];
 
-/////////////////////////////////////////////////////////////////////////需要绘图的参数名称/////////////////////////////////////////////////////////
-  List willTraverseParameter = [
 
-  ];
-////////////////////////////////////////////////////////////////////////绘图参数的中文/////////////////////////////////////////////////////////////////
-  List textHHH = [
 
-  ];
 
 //服务器返回数据中要作为按钮的参数名  
 //控制参数中 取值范围只有0和1 建议作为按钮
@@ -50,10 +56,11 @@ List<String> controlSwitchText=[
 List<String> controlSliderText=[
 
 ];
-
+///////////////////////////////////////////////////////////不用管
 List<ListTile> titleList=[
 
 ];
+///////////////////////////////////////////////////////////不用管
 List<dynamic> switchList=[
   
 ];
@@ -75,9 +82,6 @@ Future<bool> sendControllstate(String index,String state)async{
 Future<void> initData() async{
   //从服务器获取所有字段名称
   parameters = await getParameters();
-  
-  //设置主键，根据实际参数来
-  mainKey = parameters[0];
 
   //先初始化TextKey
   initGlobalTextKey();
@@ -122,7 +126,6 @@ Future<void> initData() async{
           Future<bool> flg = sendControllstate(controlSwitchText[i], flgg?"1":"0");
           //返回值为真，就更新本地数据并重新渲染Widget，否则什么都不干
           if(await flg){
-            print("返回值为真");
             switchValue[controlSwitchText[i]] = flgg;
             parametersStatus?[controlSwitchText[i]] = flgg?"1":"0";
             switchKey[controlSwitchText[i]]!.currentState?.change();
