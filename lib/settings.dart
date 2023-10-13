@@ -5,7 +5,7 @@ import 'myWidget/mySwitch.dart';
 import 'myWidget/mySliper.dart';
 import 'routes/request_function.dart';
 
-//服务器获取的所有字段的名称list
+//服务器获取的所有字段的名称  -->list
 List<dynamic> parameters=[];
 
 //viewText是parameter在界面上的显示名称，需要与parameters的顺序一一对应，如果没有初始化就会默认显示parameters里的名字
@@ -68,7 +68,7 @@ Future<bool> sendControllstate(String index,String state)async{
           mainKey: parametersStatus?[mainKey],
           index: state,
         };
-    var result = await updateStatusById(json);
+    bool result = await updateStatusById(json);
     return result;
   }  
 
@@ -85,7 +85,7 @@ Future<void> initData() async{
   //将parametersStatus初始化
   for(int i=0;i<parameters.length;i++){
     //尝试将参数名中带有 "switch" 或 "slider" 字符串的送入控制数组中，
-    //但一般需要后端返回值的命名规范,
+    //但一般需要后端数据库的命名是规范的,
     //建议自行在这两个list中添加字段而不是通过我提供的这种方法
     if(parameters[i].contains("switch")){
       controlSwitchText.add(parameters[i]);
@@ -119,13 +119,11 @@ Future<void> initData() async{
         key: switchKey[controlSwitchText[i]],
         index: controlSwitchText[i],
         onChange: (flgg) async {
-          switchValue[controlSwitchText[i]] = flgg;
           Future<bool> flg = sendControllstate(controlSwitchText[i], flgg?"1":"0");
+          //返回值为真，就更新本地数据并重新渲染Widget，否则什么都不干
           if(await flg){
-            parametersStatus?[controlSwitchText[i]] = flgg?"1":"0";
-            switchKey[controlSwitchText[i]]!.currentState?.change();
-          }
-          else{
+            print("返回值为真");
+            switchValue[controlSwitchText[i]] = flgg;
             parametersStatus?[controlSwitchText[i]] = flgg?"1":"0";
             switchKey[controlSwitchText[i]]!.currentState?.change();
           }
@@ -146,17 +144,14 @@ Future<void> initData() async{
         key: sliderKey[controlSliderText[i]],
         divisions: 100,
         max: 3000,
-        min: 1,
+        min: 0,
         value: 0,
         index: controlSliderText[i],
         onChangeEnd: (p0) async{
-          sliderValue[controlSliderText[i]] = p0;
           Future<bool> flg =  sendControllstate(controlSliderText[i], p0.toString());
+          //返回值为真，就更新本地数据并重新渲染Widget，否则什么都不干
           if(await flg){
-            parametersStatus?[controlSliderText[i]] = p0.toString();
-            sliderKey[controlSliderText[i]]!.currentState?.change();
-          }
-          else{
+            sliderValue[controlSliderText[i]] = p0;
             parametersStatus?[controlSliderText[i]] = p0.toString();
             sliderKey[controlSliderText[i]]!.currentState?.change();
           }

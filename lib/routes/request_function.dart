@@ -55,7 +55,7 @@ Future<List> getStatusHistoryByNum(int num,String id) async{
 //通过主键id往后端提交一个控制信息的修改
 Future<bool> updateStatusById(Map<String, dynamic> json) async {
   Response response = await q.post("/machine/update", data: json);
-  if (response.data["code"] == 200) {
+  if (response.data["code"].compareTo("200")==0) {
     return true;
   }
   return false;
