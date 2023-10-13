@@ -32,20 +32,13 @@ Future<Map> getStatusById(String id) async {
 }
 
 //根据主键id和时间查询大于time时间的所有记录
-Future<List> getStatusHistoryByDate(String time,String id) async {
+Future<List> getStatusHistoryByDate(DateTime time,String id) async {
   List result = [];
-  Response response = await q.get("/machineHistory/findByTime?sensor_id=$id&startTime=$time");
+  Response response = await q.get("/machineHistory/findByTime?sensor_id=$id&time=${time.millisecondsSinceEpoch}");
   result = response.data["records"] as List;
   return result;
 }
 
-//根据主键id和 时间区间 查询在这个区间内的全部记录
-Future<List> getStatusHistoryByInterval(String time1,String time2,String id)async{
-  List result = [];
-  Response response = await q.get("/machineHistory/findByTimeInterval?sensor_id=$id&startTime=$time1&endTime=$time2");
-  result = response.data["records"] as List;
-  return result;
-}
 
 //根据主键id和数量num查询最近的num条数据
 Future<List> getStatusHistoryByNum(int num,String id) async{

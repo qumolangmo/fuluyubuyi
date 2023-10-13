@@ -64,7 +64,7 @@ class _SearchState extends State<Search> {
       resultList = await getStatusHistoryByNum(selectNum,parametersStatus?[mainKey]);
     } else {
       resultList = await getStatusHistoryByDate(
-          "$year-$month-$day $hour:$minute:01",parametersStatus?[mainKey]);
+          DateTime(int.parse(year),int.parse(month),int.parse(day),int.parse(hour),int.parse(minute),int.parse(second)),parametersStatus?[mainKey]);
     }
     setState(() {
       listResult.length=0;

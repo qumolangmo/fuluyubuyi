@@ -85,7 +85,7 @@ class _CountState extends State<Count> {
     } 
     else {
       resultList = await getStatusHistoryByDate(
-          "$year-$month-$day $hour:$minute:01", parametersStatus?[mainKey]);
+          DateTime(int.parse(year),int.parse(month),int.parse(day),int.parse(hour),int.parse(minute),int.parse(second)), parametersStatus?[mainKey]);
     }
 
     //重置待渲染图标的List
@@ -170,7 +170,7 @@ class _CountState extends State<Count> {
     var resultPicker = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2022),
+      firstDate: DateTime(2023),
       lastDate: DateTime(2025),
     );
 
