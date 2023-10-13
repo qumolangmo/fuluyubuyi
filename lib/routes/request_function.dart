@@ -35,7 +35,7 @@ Future<Map> getStatusById(String id) async {
 Future<List> getStatusHistoryByDate(DateTime time,String id) async {
   List result = [];
   Response response = await q.get("/machineHistory/findByTime?sensor_id=$id&time=${time.millisecondsSinceEpoch}");
-  result = response.data["records"] as List;
+  result = response.data["status"] as List;
   return result;
 }
 
@@ -43,11 +43,11 @@ Future<List> getStatusHistoryByDate(DateTime time,String id) async {
 //根据主键id和数量num查询最近的num条数据
 Future<List> getStatusHistoryByNum(int num,String id) async{
   List result = [];
-  Response response = await q.get("/machineHistory/findByNums?sensor_id=$id&num=$num");
-  if(response.data==null||response.data["records"]==null){
+  Response response = await q.get("/machineHistory/findByNum?sensor_id=$id&num=$num");
+  if(response.data==null||response.data["status"]==null){
     return [];
   }
-  result = response.data["records"] as List;
+  result = response.data["status"] as List;
   return result;
 }
 
