@@ -1,0 +1,5 @@
+# fuluyubuyi
+修改须知
+主要是对lib/setting.dart和routes/request_function.dart文件的修改
+setting.dart文件的修改见文件中的注释
+request_function.dart文件主要修改Dio请求体的baseUrl和函数中的接口
